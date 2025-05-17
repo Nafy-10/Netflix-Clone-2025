@@ -61,6 +61,7 @@ function Header() {
             <li>Movies</li>
             <li>Latest</li>
             <li>My List</li>
+            <li>Browse by Languages</li>
             <li className="browse-language">Browse by language</li>
           </ul>
         </div>
