@@ -1,38 +1,94 @@
-import React from "react";
-import "./Header.css";
-import NetflixLogo from "../../assets/images/Netflixlogo.png"
-import SearchIcon from '@mui/icons-material/Search';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-const Header = () => {
+import "./Header.css";
+import netflixlogo from "../../assets/images/Netflixlogo.png";
+import SearchIcon from "@mui/icons-material/Search";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useState, useEffect } from "react";
+
+function Header() {
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      if (window.innerWidth > 768) {
+        setShowMobileMenu(false);
+      }
+    };
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const toggleMobileMenu = () => {
+    if (isMobile) {
+      setShowMobileMenu(!showMobileMenu);
+    }
+  };
+
   return (
-    <div className="Header_outer_container">
-      <div className="Header_container">
-        <div className="Header_left">
-          <ul>
-            <li><img src={NetflixLogo} alt="Netflix Logo" width={100} /></li>
+    <div className={`header-outer-container ${isScrolled ? "scrolled" : ""}`}>
+      <div className="header-container">
+        <div className="header-left">
+          <img
+            src={netflixlogo}
+            alt="netflix-logo"
+            width="100px"
+            className="netflix-logo"
+          />
+
+          <ul
+            className={`header-left-list ${
+              showMobileMenu && isMobile ? "mobile-menu-open" : ""
+            }`}
+          >
             <li>Home</li>
-            <li>TvShow</li>
+            <li>TV Shows</li>
             <li>Movies</li>
             <li>Latest</li>
-            <li>MyLists</li>
-            <li>Browse by Languages</li>
+            <li>My List</li>
+            <li className="browse-language">Browse by language</li>
           </ul>
         </div>
-        <div className="Header_right">
+
+        <div className="header-right">
           <ul>
-            <li><SearchIcon/></li>
-            <li><NotificationsNoneIcon/></li>
-            <li><AccountBoxIcon/></li>
-            <li><ArrowDropDownIcon/></li>
-           
+            <li>
+              <SearchIcon />
+            </li>
+            <li>
+              <NotificationsNoneIcon />
+            </li>
+            <li>
+              <AccountBoxIcon />
+            </li>
+            <li className="dropdown-arrow">
+              <ArrowDropDownIcon />
+            </li>
+            {isMobile && (
+              <li className="mobile-menu-toggle" onClick={toggleMobileMenu}>
+                <MenuIcon />
+              </li>
+            )}
           </ul>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Header;
