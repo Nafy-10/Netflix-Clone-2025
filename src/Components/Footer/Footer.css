@@ -1,46 +1,108 @@
-.footer_outer_container{
+.footer_outer_container {
     background-color: #111;
     color: grey;
     display: flex;
     justify-content: center;
 }
 
-.footer_inner_container{
+.footer_inner_container {
     width: 60%;
-    /* background-color: red; */
 }
-.footer_icons{
+
+.footer_icons {
     width: 12%;
     display: flex;
     justify-content: space-between;
     margin-left: 10px;
     color: #fff;
 }
-.footer_data{
+
+.footer_data {
     display: flex;
     justify-content: space-between;
 }
-.footer_data ul{
+
+.footer_data ul {
     list-style: none;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     height: 12vh;
-    /* background-color: blue; */
 }
-.footer_data ul li{
+
+.footer_data ul li {
     cursor: pointer;
 }
-.service_code{
+
+.service_code {
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     border: #fff 1px solid;
     width: 20%;
     margin: 10px 0;
     cursor: pointer;
 }
-.copy_write{
+
+.copy_write {
     font-size: 12px;
     margin-bottom: 10px;
 }
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .footer_inner_container {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center the whole container children horizontally */
+    }
+
+    .footer_icons {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    .footer_data {
+        flex-direction: column;
+        align-items: center;  /* Center the list wrappers */
+        width: 100%;
+    }
+
+    .footer_data > div {
+        /* Limit width and center each list vertically */
+        max-width: 250px; /* or adjust to suit your design */
+        width: 100%;
+        margin: 10px auto; /* center horizontally with equal space on left and right */
+    }
+
+    .footer_data ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        text-align: left;  /* keep text aligned left inside each list */
+        /* No horizontal margin needed, as container div is centered */
+    }
+
+    .footer_data ul li {
+        cursor: pointer;
+        width: 100%; /* full width inside the container */
+    }
+
+    .service_code {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    .copy_write {
+        font-size: 10px;
+        text-align: center;
+        width: 100%;
+    }
+}
+
