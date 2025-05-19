@@ -1,5 +1,4 @@
-
- .header-outer-container {
+.header-outer-container {
   position: sticky;
   top: 0;
   display: flex;
@@ -41,6 +40,12 @@
   gap: 20px;
   color: white;
 }
+
+.Header_left ul li,
+.Header_right ul li {
+  cursor: pointer !important;
+}
+
 
 /* Right-side icons */
 .header-right ul {

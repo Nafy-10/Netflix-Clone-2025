@@ -91,6 +91,7 @@
     .footer_data ul li {
         cursor: pointer;
         width: 100%; /* full width inside the container */
+        
     }
 
     .service_code {
